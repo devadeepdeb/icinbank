@@ -49,7 +49,7 @@ pipeline {
                 echo 'Running mysql image'
                 bat 'docker run --name mysqldbnewone --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" --env="MYSQL_DATABASE=${MYSQL_DATABASE}" --env="MYSQL_USER=${MYSQL_USER}" --detach mysql:8.0.23'
 //                bat 'docker exec -i mysqldbnewone mysql -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD}'
-                bat 'timeout 20'
+//                bat 'timeout 20'
             }
         }
         stage('Deploy and Run Bank Application container') {
