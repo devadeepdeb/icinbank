@@ -55,7 +55,7 @@ pipeline {
         stage('Deploy and Run Bank Application container') {
             steps {
                 echo 'Starting application container'
-                bat 'docker run --detach -p 8089:8080 --name devadeepdeb/icinbank:1 --link mysqldbnewone:mysql mysqldbnewone'
+                bat 'docker run --detach -p 8089:8080 --name devadeepdeb/icinbank:1 --link mysqldbnewone:mysql devadeepdeb/icinbank:1'
             }
         }
 //       stage('Create Database') {
