@@ -52,12 +52,12 @@ pipeline {
 //                bat 'timeout 20'
             }
         }
-        stage('Deploy and Run Bank Application container') {
-            steps {
-                echo 'Starting application container'
-                bat 'docker run --detach -p 8089:8080 --name devadeepdebicinbank --link mysqldbnewone:mysql devadeepdebicinbank'
-            }
-        }
+//        stage('Deploy and Run Bank Application container') {
+//            steps {
+//                echo 'Starting application container'
+//                bat 'docker run --detach -p 8089:8080 --name devadeepdebicinbank --link mysqldbnewone:mysql devadeepdebicinbank'
+//            }
+//        }
 //       stage('Create Database') {
 //            steps {
 //                echo 'Running Database Image'
