@@ -1,7 +1,7 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'root', description: 'MySQL password')
+        string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'devadeep', description: 'MySQL password')
     }
     stages {
         stage ("Initialize Jenkins Env") {
@@ -28,6 +28,12 @@ pipeline {
             steps {
                 echo 'Building...'
                 bat 'mvn clean install -Dmaven.test.skip=true'
+            }
+        }
+        stage('Delete previous Docker Image') {
+            steps {
+                echo 'Deleting old Docker image'
+                bat 'docker rmi devadeepdeb/icinbank:1 .'
             }
         }
         stage('Build Docker Image') {
