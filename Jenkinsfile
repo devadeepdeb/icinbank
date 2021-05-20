@@ -48,7 +48,7 @@ pipeline {
             steps {
                 echo 'Running mysql image'
                 bat 'docker run --name mysqldbnewone --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" --env="MYSQL_DATABASE=${MYSQL_DATABASE}" --env="MYSQL_USER=${MYSQL_USER}" --detach mysql:8.0.23'
-                bat 'docker exec -i mysqldbnewone mysql -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD}'
+//                bat 'docker exec -i mysqldbnewone mysql -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD}'
                 bat 'sleep 20'
             }
         }
