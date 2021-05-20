@@ -2,6 +2,8 @@ pipeline {
     agent any
     parameters {
         string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'devadeep', description: 'MySQL password')
+        string(name: 'MYSQL_DATABASE', defaultValue: 'bootdb', description: 'MySQL database')
+        string(name: 'MYSQL_USER', defaultValue: 'root', description: 'MySQL username')
     }
     stages {
         stage ("Initialize Jenkins Env") {
@@ -30,16 +32,30 @@ pipeline {
                 bat 'mvn clean install -Dmaven.test.skip=true'
             }
         }
-        stage('Delete previous Docker Image') {
-            steps {
-                echo 'Deleting old Docker image'
-                bat 'docker rmi devadeepdeb/icinbank:1 .'
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
                 bat 'docker build -t devadeepdeb/icinbank:1 .'
+            }
+        }
+        stage('Pull MySQL Image') {
+            steps {
+                echo 'Pulling mysql image'
+                bat 'docker pull mysql:8.0.23'
+            }
+        }
+        stage('Run MySQL server to run as Docker container') {
+            steps {
+                echo 'Running mysql image'
+                bat 'docker run --name mysqldbnewone --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" --env="MYSQL_DATABASE=${MYSQL_DATABASE}" --env="MYSQL_USER=${MYSQL_USER}" --detach mysql:8.0.23'
+                bat 'docker exec -it mysqldbnewone mysql -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD}'
+                bat 'sleep 20'
+            }
+        }
+        stage('Deploy and Run Bank Application container') {
+            steps {
+                echo 'Starting application container'
+                bat 'docker run --detach -p 8089:8080 --name devadeepdeb/icinbank:1 --link mysqldbnewone:mysql:8.0.23 mysqldbnewone'
             }
         }
 //       stage('Create Database') {
