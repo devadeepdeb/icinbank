@@ -35,7 +35,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
-                bat 'docker build -t devadeepdeb/icinbank:1 .'
+                bat 'docker build -t devadeepdeb-icinbank:1 .'
             }
         }
         stage('Pull MySQL Image') {
@@ -55,7 +55,7 @@ pipeline {
         stage('Deploy and Run Bank Application container') {
             steps {
                 echo 'Starting application container'
-                bat 'docker run --detach -p 8089:8080 --name devadeepdeb/icinbank:1 --link mysqldbnewone:mysql devadeepdeb/icinbank:1'
+                bat 'docker run --detach -p 8089:8080 --name devadeepdeb-icinbank:1 --link mysqldbnewone:mysql devadeepdeb-icinbank:1'
             }
         }
 //       stage('Create Database') {
