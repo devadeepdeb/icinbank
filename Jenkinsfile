@@ -7,58 +7,58 @@ pipeline {
 //        string(name: 'MYSQL_USER', defaultValue: 'root', description: 'MySQL username')
     }
     stages {
-        stage ("Initialize Jenkins Env") {
-         steps {
-            bat '''
-            echo "PATH = ${PATH}"
-            echo "M2_HOME = ${M2_HOME}"
-            '''
-         }
-        }
-        stage('Download Code') {
-            steps {
-               echo 'checking out'
-               checkout scm
-            }
-        }
-        stage('Execute Tests'){
-            steps {
-                echo 'Testing Skipped'
-                bat 'mvn test -Dmaven.test.skip=true'
-            }
-        }
-        stage('Build Application'){
-            steps {
-                echo 'Building...'
-                bat 'mvn clean install -Dmaven.test.skip=true'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                echo 'Building Docker image'
-                bat 'docker build -t devadeepdebicinbank .'
-            }
-        }
-        stage('Pull MySQL Image') {
-            steps {
-                echo 'Pulling mysql image'
-                bat 'docker pull mysql:8.0.23'
-            }
-        }
-        stage('Run MySQL server to run as Docker container') {
-            steps {
-                echo 'Running mysql image'
-                bat 'docker run --name mysqldbnewone --env="MYSQL_ROOT_USER=${MYSQL_ROOT_USER}" --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" --env="MYSQL_DATABASE=${MYSQL_DATABASE}" --detach mysql:8.0.23'
-//                bat 'docker exec -i mysqldbnewone mysql -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD}'
-//                bat 'timeout 20'
-            }
-        }
-//        stage('Deploy and Run Bank Application container') {
+//        stage ("Initialize Jenkins Env") {
+//         steps {
+//            bat '''
+//            echo "PATH = ${PATH}"
+//            echo "M2_HOME = ${M2_HOME}"
+//            '''
+//         }
+//        }
+//        stage('Download Code') {
 //            steps {
-//                echo 'Starting application container'
-//                bat 'docker run --detach -p 8089:8080 --name devadeepdebicinbank --link mysqldbnewone:mysql devadeepdebicinbank'
+//               echo 'checking out'
+//               checkout scm
 //            }
 //        }
+//        stage('Execute Tests'){
+//            steps {
+//                echo 'Testing Skipped'
+//                bat 'mvn test -Dmaven.test.skip=true'
+//            }
+//        }
+//        stage('Build Application'){
+//            steps {
+//                echo 'Building...'
+//                bat 'mvn clean install -Dmaven.test.skip=true'
+//            }
+//        }
+//        stage('Build Docker Image') {
+//            steps {
+//                echo 'Building Docker image'
+//                bat 'docker build -t devadeepdebicinbank .'
+//            }
+//        }
+//        stage('Pull MySQL Image') {
+//            steps {
+//                echo 'Pulling mysql image'
+//                bat 'docker pull mysql:8.0.23'
+//            }
+//        }
+//        stage('Run MySQL server to run as Docker container') {
+//            steps {
+//                echo 'Running mysql image'
+//                bat 'docker run --name mysqldbnewone --env="MYSQL_ROOT_USER=${MYSQL_ROOT_USER}" --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" --env="MYSQL_DATABASE=${MYSQL_DATABASE}" --detach mysql:8.0.23'
+////                bat 'docker exec -i mysqldbnewone mysql -u${MYSQL_USER} -p${MYSQL_ROOT_PASSWORD}'
+////                bat 'timeout 20'
+//            }
+//        }
+        stage('Deploy and Run Bank Application container') {
+            steps {
+                echo 'Starting application container'
+                bat 'docker run --detach -p 8089:8080 --name devadeepdebicinbank --link mysqldbnewone:mysql devadeepdebicinbank'
+            }
+        }
 //       stage('Create Database') {
 //            steps {
 //                echo 'Running Database Image'
