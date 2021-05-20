@@ -20,8 +20,8 @@ pipeline {
         }
         stage('Execute Tests'){
             steps {
-                echo 'Testing'
-                bat 'mvn test'
+                echo 'Testing Skipped'
+                bat 'mvn test -Dmaven.test.skip=true'
             }
         }
         stage('Build Application'){
