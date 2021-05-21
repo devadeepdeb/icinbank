@@ -7,58 +7,59 @@ pipeline {
 ////        string(name: 'MYSQL_USER', defaultValue: 'root', description: 'MySQL username')
 //    }
     stages {
-        stage ("Initialize Jenkins Env") {
-         steps {
-            bat '''
-            echo "PATH = ${PATH}"
-            echo "M2_HOME = ${M2_HOME}"
-            '''
-         }
-        }
-        stage('Download Code') {
-            steps {
-               echo 'checking out'
-               checkout scm
-            }
-        }
-        stage('Execute Tests'){
-            steps {
-                echo 'Testing Skipped'
-                bat 'mvn test -Dmaven.test.skip=true'
-            }
-        }
-        stage('Build Application'){
-            steps {
-                echo 'Building...'
-                bat 'mvn clean install -Dmaven.test.skip=true'
-            }
-        }
-        stage('Build Docker Image') {
-            steps {
-                echo 'Building Docker image'
-                bat 'docker build -t usermysql .'
-            }
-        }
-        stage('Pull MySQL Image') {
-            steps {
-                echo 'Pulling mysql image'
-                bat 'docker pull mysql:8.0.23'
-            }
-        }
-        stage('Run MySQL server to run as Docker container') {
-            steps {
-                echo 'Running mysql image'
-                bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
-//                bat 'docker exec -i mysqlstandalone mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD}'
-//                bat 'timeout 20'
-            }
-        }
-//        stage('Deploy and Run Bank Application container') {
+//        stage ("Initialize Jenkins Env") {
+//         steps {
+//            bat '''
+//            echo "PATH = ${PATH}"
+//            echo "M2_HOME = ${M2_HOME}"
+//            '''
+//         }
+//        }
+//        stage('Download Code') {
 //            steps {
-//                echo 'Starting application container'
-//                bat 'docker run --detach -p 7009:8080 --name usermysql --link mysqlstandalone:mysql usermysql'
+//               echo 'checking out'
+//               checkout scm
 //            }
 //        }
+//        stage('Execute Tests'){
+//            steps {
+//                echo 'Testing Skipped'
+//                bat 'mvn test -Dmaven.test.skip=true'
+//            }
+//        }
+//        stage('Build Application'){
+//            steps {
+//                echo 'Building...'
+//                bat 'mvn clean install -Dmaven.test.skip=true'
+//            }
+//        }
+//        stage('Build Docker Image') {
+//            steps {
+//                echo 'Building Docker image'
+//                bat 'docker build -t usermysql .'
+//            }
+//        }
+//        stage('Pull MySQL Image') {
+//            steps {
+//                echo 'Pulling mysql image'
+//                bat 'docker pull mysql:8.0.23'
+//            }
+//        }
+//        stage('Run MySQL server to run as Docker container') {
+//            steps {
+//                echo 'Running mysql image'
+//                bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
+////                bat 'docker exec -i mysqlstandalone mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD}'
+////                bat 'timeout 20'
+//            }
+//        }
+        stage('Deploy and Run Bank Application container') {
+            steps {
+                echo 'Starting application container'
+                bat 'docker run -d -p 7070:8080 --name usermysql --link mysqlstandalone:mysql usermysql'
+                bat 'docker container logs -f usermysql'
+            }
+        }
 //       stage('Create Database') {
 //            steps {
 //                echo 'Running Database Image'
