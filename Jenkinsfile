@@ -1,11 +1,11 @@
 pipeline {
     agent any
-    parameters {
-        string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'devadeep', description: 'MySQL password')
-        string(name: 'MYSQL_ROOT_USER', defaultValue: 'root', description: 'MySQL password')
-        string(name: 'MYSQL_DATABASE', defaultValue: 'bootdb', description: 'MySQL database')
-//        string(name: 'MYSQL_USER', defaultValue: 'root', description: 'MySQL username')
-    }
+//    parameters {
+//        string(name: 'MYSQL_ROOT_PASSWORD', defaultValue: 'devadeep', description: 'MySQL password')
+//        string(name: 'MYSQL_ROOT_USER', defaultValue: 'root', description: 'MySQL password')
+//        string(name: 'MYSQL_DATABASE', defaultValue: 'bootdb', description: 'MySQL database')
+////        string(name: 'MYSQL_USER', defaultValue: 'root', description: 'MySQL username')
+//    }
     stages {
         stage ("Initialize Jenkins Env") {
          steps {
@@ -48,7 +48,7 @@ pipeline {
         stage('Run MySQL server to run as Docker container') {
             steps {
                 echo 'Running mysql image'
-                bat 'docker run --name mysqlstandalone --env="MYSQL_ROOT_USER=${MYSQL_ROOT_USER}" --env="MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}" --env="MYSQL_DATABASE=${MYSQL_DATABASE}" --detach mysql:8.0.23'
+                bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
 //                bat 'docker exec -i mysqlstandalone mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD}'
 //                bat 'timeout 20'
             }
