@@ -23,14 +23,14 @@ pipeline {
         }
         stage('Execute Tests'){
             steps {
-                echo 'Testing Skipped'
-                bat 'mvn test -Dmaven.test.skip=true'
+                echo 'Testing Started'
+                bat 'mvn test'
             }
         }
         stage('Build Application'){
             steps {
                 echo 'Building...'
-                bat 'mvn clean install -Dmaven.test.skip=true'
+                bat 'mvn clean install'
             }
         }
         stage('Build Docker Image') {
