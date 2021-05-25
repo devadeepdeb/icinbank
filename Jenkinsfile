@@ -39,8 +39,8 @@ pipeline {
                 
                     def doc_containers = bat('docker ps --format {{.Names}}')
                     if (doc_containers != null) {
-                        bat "docker stop $(doc_containers)"
-						bat "docker rm $(doc_containers)"
+                        bat "docker stop ${doc_containers}"
+						bat "docker rm ${doc_containers}"
 						bat "docker rmi usermysql"
 						bat "docker rmi mysql:8.0.23"
                     }
