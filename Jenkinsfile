@@ -49,6 +49,7 @@ pipeline {
                    else {
                         bat "ping -n 1 127.0.0.1>NUL"   				   
                 }
+			  }
             }
         }
         stage('Build Docker Image') {
