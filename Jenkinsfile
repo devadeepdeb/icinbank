@@ -50,7 +50,7 @@ pipeline {
                 echo 'Running mysql image'
                 bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
 //                bat 'docker exec -i mysqlstandalone mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD}'
-                bat 'waitfor SomethingThatIsNeverHappening /t 300 2>NUL'
+                bat 'ping -n 250 127.0.0.1'
             }
         }
         stage('Deploy and Run Bank Application container') {
