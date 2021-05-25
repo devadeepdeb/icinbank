@@ -37,10 +37,10 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat("returnStdout: true, script: 'docker ps'")
+                    def doc_containers = bat(returnStdout: true, script: 'docker container ps')
                     if (doc_containers) {
-                        bat "docker stop "${doc_containers}""
-						bat "docker rm "${doc_containers}""
+                        bat "docker stop ${doc_containers}"
+						bat "docker rm ${doc_containers}"
 						bat "docker rmi usermysql"
 						bat "docker rmi mysql:8.0.23"
                     }
