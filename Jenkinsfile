@@ -37,12 +37,12 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat(returnStdout: true, script: 'docker ps --format {{.Names}}) 
-					def doc_images = bat(returnStdout: true, script: 'docker ps --format {{.Image}})
+                    def doc_containers = bat(returnStdout: true, script: 'docker ps -q').replaceAll("\n", " ")
                     if (doc_containers) {
                         bat "docker stop ${doc_containers}"
 						bat "docker rm ${doc_containers}"
-						bat "docker rmi ${doc_images}"
+						bat "docker rmi usermysql"
+						bat "docker rmi mysql:8.0.23"
                     }
                     
                 }
