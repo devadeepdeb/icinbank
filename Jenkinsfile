@@ -37,7 +37,7 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat('docker ps -q').replaceAll("\n", " ")
+                    def doc_containers = bat('docker ps -q')
                     if (doc_containers != null) {
                         bat "docker stop usermysql"
 						bat "docker stop mysqlstandalone"
