@@ -38,16 +38,16 @@ pipeline {
                 script{
                 
                     def doc_containers = bat(returnStdout: true, script: 'docker ps').replaceAll("\n", " ")
-                    if (doc_containers) {
+                    if (doc_containers != null) {
                         bat "docker stop usermysql"
 						bat "docker stop mysqlstandalone"
 						bat "docker rm usermysql"
 						bat "docker rm mysqlstandalone"
-						bat "docker rm usermysql"
 						bat "docker rmi usermysql"
 						bat "docker rmi mysql:8.0.23"
                     }
-                    
+                   else {
+                        bat "ping -n 1 127.0.0.1>NUL"   				   
                 }
             }
         }
