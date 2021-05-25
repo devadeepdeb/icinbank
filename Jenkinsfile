@@ -33,6 +33,21 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
+		stage('Clean docker containers and images'){
+            steps{
+                script{
+                
+                    def doc_containers = bat(returnStdout: true, script: 'docker ps --format {{.Names}}').replaceAll("\n", " ") 
+					def doc_images = bat(returnStdout: true, script: 'docker ps --format {{.Image}}').replaceAll("\n", " ")
+                    if (doc_containers) {
+                        bat "docker stop ${doc_containers}"
+						bat "docker rm ${doc_containers}"
+						bat "docker rmi ${doc_images}"
+                    }
+                    
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
