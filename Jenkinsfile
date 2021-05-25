@@ -37,8 +37,8 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat(returnStdout: true, script: bat 'docker ps')
-                    if (doc_containers != null) {
+                    def doc_containers = bat("returnStdout: true, script: 'docker ps'")
+                    if (doc_containers) {
                         bat "docker stop "${doc_containers}""
 						bat "docker rm "${doc_containers}""
 						bat "docker rmi usermysql"
@@ -47,8 +47,8 @@ pipeline {
                    else {
                         bat "ping -n 1 127.0.0.1>NUL"   				   
                 }
-			  }
             }
+			}
         }
         stage('Build Docker Image') {
             steps {
