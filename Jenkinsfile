@@ -37,8 +37,8 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat(returnStdout: true, script: 'docker ps --format '{{.Names}}'').replaceAll("\n", " ") 
-					def doc_images = bat(returnStdout: true, script: 'docker ps --format '{{.Image}}'').replaceAll("\n", " ")
+                    def doc_containers = bat(returnStdout: true, script: 'docker ps --format {{.Names}}) 
+					def doc_images = bat(returnStdout: true, script: 'docker ps --format {{.Image}})
                     if (doc_containers) {
                         bat "docker stop ${doc_containers}"
 						bat "docker rm ${doc_containers}"
