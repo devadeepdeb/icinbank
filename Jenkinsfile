@@ -37,8 +37,8 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat('docker ps --format {{.Names}}')
-                    if (doc_containers) {
+                    def doc_containers = bat(returnStdout: true, script: bat 'docker ps')
+                    if (doc_containers != null) {
                         bat "docker stop "${doc_containers}""
 						bat "docker rm "${doc_containers}""
 						bat "docker rmi usermysql"
