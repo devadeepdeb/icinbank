@@ -39,13 +39,13 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers(command1) = bat(returnStdout: true, script: "${command}").replaceAll("\n", " ")
-                    def doc_images(command2) = bat(returnStdout: true, script: "${command}").replaceAll("\n", " ")					
+                    def doc_containers(command1) = sh(returnStdout: true, script: "${command}").replaceAll("\n", " ")
+                    def doc_images(command2) = sh(returnStdout: true, script: "${command}").replaceAll("\n", " ")					
                     if (doc_containers(command1)) {
-                        sh "docker stop ${doc_containers(command1)}"
+                        bat "docker stop ${doc_containers(command1)}"
                     }
                     if (doc_images(command2)) {
-                        sh "docker stop ${doc_images(command2)}"
+                        bat "docker stop ${doc_images(command2)}"
                     } 
                 }
             }
