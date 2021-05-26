@@ -39,7 +39,7 @@ pipeline {
                 
                     def doc_containers = bat(returnStdout: true, script: 'docker container ps -q').replaceAll("\n", " ") 
                     if (doc_containers) {
-                        sh "docker stop ${doc_containers}"
+                        bat "docker stop ${doc_containers}"
                     }
                     
                 }
