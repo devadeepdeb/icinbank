@@ -35,14 +35,12 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
 		steps{
-                script{
-                
-                    def doc_containers = bat(returnStdout: true, script: 'docker container ps -q').replaceAll("\n", " ") 
-                    if (doc_containers) {
-                        bat "docker stop ${doc_containers}"
-                    }
-                    
-                }
+		      echo 'Stopping all pre-existing docker containers...'
+              bat 'FOR /f "tokens=*" %i IN ('docker ps -aq --format {{.Names}}') DO docker stop %i'
+			  echo 'Removing all pre-existing docker containers...'
+			  bat 'FOR /f "tokens=*" %i IN ('docker ps -aq --format {{.Names}}') DO docker rm %i'
+			  echo 'Removing asssociated docker images...'
+			  bat 'FOR /f "tokens=*" %i IN ('docker ps -aq --format {{.Image}}') DO docker rmi %i'
             }
         }
         stage('Build Docker Image') {
