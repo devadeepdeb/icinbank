@@ -41,7 +41,17 @@ pipeline {
 			  bat "FOR /f %i IN ('docker ps -aq') DO docker rm %i"
 			  echo 'Removing asssociated docker images...'
 			  bat "FOR /f %i IN ('docker ps -aq') DO docker rmi %i"
+			  script{
+                
+                    def doc_containers = bat('docker container ps')
+                    if (doc_containers) {
+                        sh "docker stop ${doc_containers}"
+                    }
+                    else {
+					   bat 'ping -n 1 127.0.0.1>NUL'
+                }
             }
+			}
         }
         stage('Build Docker Image') {
             steps {
