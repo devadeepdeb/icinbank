@@ -50,7 +50,6 @@ pipeline {
                 echo 'Running mysql image and giving warmup time of approx 4 minutes'
                 bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
                 bat 'ping -n 300 127.0.0.1>NUL'
-				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep'
             }
         }
         stage('Deploy and Run Bank Application container') {
@@ -60,6 +59,11 @@ pipeline {
 //               bat 'docker container logs -f usermysql'
                  bat 'ping -n 60 127.0.0.1>NUL'
                  echo 'Started application container on port 7070'
+				 bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW DATABASES;"'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW TABLES FROM bootdb;"'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "INSERT INTO bootdb.role (role_id, name) VALUES ('0', 'ROLE_USER');"'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "INSERT INTO bootdb.role (role_id, name) VALUES ('1', 'ROLE_ADMIN');"'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.role;"'
 				 bat 'ping -n 300 127.0.0.1>NUL'
             }
         }
