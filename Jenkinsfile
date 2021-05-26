@@ -35,22 +35,7 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
 		steps{
-		      echo 'Stopping all pre-existing docker containers...'
-              bat 'FOR /f %i IN ('"docker ps -aq"') DO docker stop %i'
-			  echo 'Removing all pre-existing docker containers...'
-			  bat 'FOR /f %i IN ('"docker ps -aq"') DO docker rm %i'
-			  echo 'Removing asssociated docker images...'
-			  bat 'FOR /f %i IN ('"docker ps -aq"') DO docker rmi %i'
-			  script{
-                
-                    def doc_containers = bat('docker container ps')
-                    if (doc_containers) {
-                        sh "docker stop ${doc_containers}"
-                    }
-                    else {
-					   bat 'ping -n 1 127.0.0.1>NUL'
-                }
-            }
+		     powershell "FOR /f %i IN ('docker ps -aq') DO docker stop %i"
 			}
         }
         stage('Build Docker Image') {
