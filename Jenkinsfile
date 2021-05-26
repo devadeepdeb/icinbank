@@ -37,7 +37,7 @@ pipeline {
             steps{
                 script{
                 
-                    def doc_containers = bat "docker container ps --format {{.Names}}"
+                    def doc_containers = sh(returnStdout: true, script: 'docker container ps -aq').replaceAll("\n", " ")
                     if (doc_containers) {
                         bat "docker stop ${doc_containers}"
 						bat "docker rm ${doc_containers}"
