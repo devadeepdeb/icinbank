@@ -49,7 +49,7 @@ pipeline {
             steps {
                 echo 'Running mysql image and giving warmup time of approx 4 minutes'
                 bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
-                bat 'ping -n 250 127.0.0.1>NUL'
+                bat 'ping -n 300 127.0.0.1>NUL'
 				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep'
             }
         }
