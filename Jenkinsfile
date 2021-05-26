@@ -61,8 +61,8 @@ pipeline {
                  echo 'Started application container on port 7070'
 				 bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW DATABASES;"'
 				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW TABLES FROM bootdb;"'
-				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "USE bootdb;" -e "INSERT INTO bootdb.role (role_id, 'name') VALUES ("0", '"ROLEUSER"');"'
-				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "USE bootdb;" -e "INSERT INTO bootdb.role (role_id, 'name') VALUES ("1", '"ROLEADMIN"');"'
+				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "USE bootdb;" -e "INSERT INTO bootdb.role VALUES ('ROLE_USER');"'
+				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "USE bootdb;" -e "INSERT INTO bootdb.role VALUES ('ROLE_ADMIN');"'
 				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.role;"'
 				 bat 'ping -n 300 127.0.0.1>NUL'
             }
