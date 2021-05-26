@@ -36,13 +36,10 @@ pipeline {
 		stage('Clean docker containers and images'){
 		steps{
 		      echo 'Stopping all pre-existing docker containers...'
-			  @ECHO OFF
               bat 'FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker stop %%i'
 			  echo 'Removing all pre-existing docker containers...'
-			  @ECHO OFF
 			  bat 'FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker rm %%i'
 			  echo 'Removing asssociated docker images...'
-			  @ECHO OFF
 			  bat 'FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker rmi %%i'
             }
         }
