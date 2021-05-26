@@ -35,7 +35,7 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
             steps{
-                    when {bat "docker ps --format {{.Names}}"} {
+                    when { expression {bat "docker ps --format {{.Names}}"}} {
                         bat "docker stop usermysql"
 						bat "docker rm usermysql"
 						bat "docker stop mysqlstandalone"
