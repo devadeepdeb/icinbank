@@ -35,9 +35,7 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
             steps{
-                script{
-                
-                    def doc_containers = bat('docker ps --format {{.Names}}')
+                def doc_containers = bat('docker ps --format {{.Names}}')
                     if (doc_containers) {
                         bat "docker stop ${doc_containers}"
 						bat "docker rm ${doc_containers}"
@@ -47,7 +45,6 @@ pipeline {
                    else {
                         bat "ping -n 1 127.0.0.1>NUL"   				   
                 }
-            }
 			}
         }
         stage('Build Docker Image') {
@@ -67,7 +64,7 @@ pipeline {
                 echo 'Running mysql image'
                 bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
 //                bat 'docker exec -i mysqlstandalone mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD}'
-                bat 'ping -n 720 127.0.0.1>NUL'
+                bat 'ping -n 250 127.0.0.1>NUL'
             }
         }
         stage('Deploy and Run Bank Application container') {
