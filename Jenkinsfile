@@ -34,9 +34,10 @@ pipeline {
             }
         }
 		stage('Clean docker containers and images'){
-		command1('docker ps --format {{.Names}}')
-		command2('docker ps --format {{.Image}}')
+		
             steps{
+			command1('docker ps --format {{.Names}}')
+		command2('docker ps --format {{.Image}}')
                 script{
                 
                     def doc_containers(command1) = bat(returnStdout: true, script: "${command1}").replaceAll("\n", " ")
