@@ -35,7 +35,7 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
             steps{
-                
+                script {
                     if (bat "docker ps --format {{.Names}}") {
                         bat "docker stop usermysql"
 						bat "docker rm usermysql"
@@ -47,6 +47,7 @@ pipeline {
                    else {
                         bat "ping -n 1 127.0.0.1>NUL"   				   
                 }
+				}
 			}
         }
         stage('Build Docker Image') {
