@@ -35,7 +35,7 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
 		steps{
-		     powershell "FOR /f %i IN ('docker ps -aq') DO docker stop %i"
+		     bat "docker stop usermysql && docker rm usermysql && docker stop mysqlstandalone && docker rm mysqlstandalone && docker rmi usermysql && docker rmi mysql:8.0.23"
 			}
         }
         stage('Build Docker Image') {
