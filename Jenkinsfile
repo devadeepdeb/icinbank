@@ -35,14 +35,13 @@ pipeline {
         }
 		stage('Clean docker containers and images'){
 		steps{
-		script{
 		      echo 'Stopping all pre-existing docker containers...'
-              bat 'FOR /f %i IN (script : 'docker ps -aq') DO docker stop %i'
+              bat 'FOR /f %i IN ('"docker ps -aq"') DO docker stop %i'
 			  echo 'Removing all pre-existing docker containers...'
-			  bat 'FOR /f %i IN (script : 'docker ps -aq') DO docker rm %i'
+			  bat 'FOR /f %i IN ('"docker ps -aq"') DO docker rm %i'
 			  echo 'Removing asssociated docker images...'
-			  bat 'FOR /f %i IN (script : 'docker ps -aq') DO docker rmi %i'
-			  
+			  bat 'FOR /f %i IN ('"docker ps -aq"') DO docker rmi %i'
+			  script{
                 
                     def doc_containers = bat('docker container ps')
                     if (doc_containers) {
