@@ -34,20 +34,14 @@ pipeline {
             }
         }
 		stage('Clean docker containers and images'){
-		
-            steps{
-			command1('docker ps --format {{.Names}}')
-		command2('docker ps --format {{.Image}}')
+		steps{
                 script{
                 
-                    def doc_containers(command1) = bat(returnStdout: true, script: "${command1}").replaceAll("\n", " ")
-                    def doc_images(command2) = bat(returnStdout: true, script: "${command2}").replaceAll("\n", " ")					
-                    if (doc_containers(command1)) {
-                        bat "docker stop ${doc_containers(command1)}"
+                    def doc_containers = bat(returnStdout: true, script: 'docker container ps -q').replaceAll("\n", " ") 
+                    if (doc_containers) {
+                        sh "docker stop ${doc_containers}"
                     }
-                    if (doc_images(command2)) {
-                        bat "docker stop ${doc_images(command2)}"
-                    } 
+                    
                 }
             }
         }
