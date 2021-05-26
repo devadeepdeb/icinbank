@@ -34,17 +34,21 @@ pipeline {
             }
         }
 		stage('Clean docker containers and images'){
+		command1('docker ps --format {{.Names}}')
+		command2('docker ps --format {{.Image}}')
             steps{
-                    when { expression {"docker ps --format {{.Names}}"}} {
-                        bat "docker stop usermysql"
-						bat "docker rm usermysql"
-						bat "docker stop mysqlstandalone"
-						bat "docker rm mysqlstandalone"
-						bat "docker rmi usermysql"
-						bat "docker rmi mysql:8.0.23"
+                script{
+                
+                    def doc_containers(command1) = bat(returnStdout: true, script: "${command}").replaceAll("\n", " ")
+                    def doc_images(command2) = bat(returnStdout: true, script: "${command}").replaceAll("\n", " ")					
+                    if (doc_containers(command1)) {
+                        sh "docker stop ${doc_containers(command1)}"
                     }
-                   
-			}
+                    if (doc_images(command2)) {
+                        sh "docker stop ${doc_images(command2)}"
+                    } 
+                }
+            }
         }
         stage('Build Docker Image') {
             steps {
