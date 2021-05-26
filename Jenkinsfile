@@ -33,11 +33,6 @@ pipeline {
                 bat 'mvn clean install'
             }
         }
-		stage('Clean docker containers and images'){
-		steps{
-		     bat "docker stop usermysql && docker rm usermysql && docker stop mysqlstandalone && docker rm mysqlstandalone && docker rmi usermysql && docker rmi mysql:8.0.23"
-			}
-        }
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
@@ -52,10 +47,10 @@ pipeline {
         }
         stage('Run MySQL server to run as Docker container') {
             steps {
-                echo 'Running mysql image'
+                echo 'Running mysql image and giving warmup time of approx 4 minutes'
                 bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
-//                bat 'docker exec -i mysqlstandalone mysql -u${MYSQL_ROOT_USER} -p${MYSQL_ROOT_PASSWORD}'
                 bat 'ping -n 250 127.0.0.1>NUL'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep'
             }
         }
         stage('Deploy and Run Bank Application container') {
@@ -65,7 +60,14 @@ pipeline {
 //               bat 'docker container logs -f usermysql'
                  bat 'ping -n 60 127.0.0.1>NUL'
                  echo 'Started application container on port 7070'
+				 bat 'ping -n 300 127.0.0.1>NUL'
             }
+        }
+		stage('Clean docker containers and images'){
+		steps{
+		     echo 'Stopping application container and database after 5 minutes'
+		     bat "docker stop usermysql && docker rm usermysql && docker stop mysqlstandalone && docker rm mysqlstandalone && docker rmi usermysql && docker rmi mysql:8.0.23"
+			}
         }
 //       stage('Create Database') {
 //            steps {
