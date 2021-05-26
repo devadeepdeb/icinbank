@@ -37,13 +37,13 @@ pipeline {
 		steps{
 		      echo 'Stopping all pre-existing docker containers...'
 			  @ECHO OFF
-              .bat 'FOR /f "tokens=*" %i IN ('docker ps -aq') DO docker stop %i'
+              .bat 'FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker stop %%i'
 			  echo 'Removing all pre-existing docker containers...'
 			  @ECHO OFF
-			  .bat 'FOR /f "tokens=*" %i IN ('docker ps -aq') DO docker rm %i'
+			  .bat 'FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker rm %%i'
 			  echo 'Removing asssociated docker images...'
-			  @ECHO OFFs
-			  .bat 'FOR /f "tokens=*" %i IN ('docker ps -aq') DO docker rmi %i'
+			  @ECHO OFF
+			  .bat 'FOR /f "tokens=*" %%i IN ('docker ps -aq') DO docker rmi %%i'
             }
         }
         stage('Build Docker Image') {
