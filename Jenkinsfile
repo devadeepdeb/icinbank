@@ -30,7 +30,7 @@ pipeline {
         stage('Build Application'){
             steps {
                 echo 'Building...'
-                bat 'mvn clean compile'
+                bat 'mvn clean install'
             }
         }
         stage('Build Docker Image') {
