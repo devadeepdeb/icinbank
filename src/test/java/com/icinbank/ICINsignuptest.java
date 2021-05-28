@@ -1,12 +1,12 @@
 package com.icinbank;
 
-import static org.junit.Assert.assertNotNull;
+
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,7 +18,7 @@ public class ICINsignuptest {
 	@Autowired
 	WebDriver driver;
 
-	@Before
+    @BeforeEach
 	public void Setup() {
 		System.setProperty("webdriver.driver.chrome", "chromedriver.exe");
 		
@@ -41,34 +41,28 @@ public class ICINsignuptest {
 			
 			WebElement fname = driver.findElement(By.name("firstName"));
 			fname.sendKeys("GOLAP KANTA");
-			assertNotNull(fname);
 			
 			WebElement lname = driver.findElement(By.name("lastName"));
 			lname.sendKeys("DEB");
-			assertNotNull(lname);
 			
 			WebElement phn = driver.findElement(By.name("phone"));
 			phn.sendKeys("9953336381");
-			assertNotNull(phn);
 			
 			WebElement eml = driver.findElement(By.name("email"));
 			eml.sendKeys("gk_deb1@yahoo.com");
-			assertNotNull(eml);
 			
 			WebElement uname = driver.findElement(By.name("username"));
 			uname.sendKeys("gkdeb");
-			assertNotNull(uname);
 			
 			WebElement uPwd = driver.findElement(By.name("password"));
 			uPwd.sendKeys("gkdeb");
-			assertNotNull(uPwd);
 			
 			WebElement btnLogin = driver.findElement(By.partialLinkText("Sign up "));
 			btnLogin.click();
 			
 		}
 	
-	 @After
+	 @AfterEach
 	    public void tearDown() {
 	        if (driver != null) {
 	            driver.quit();
