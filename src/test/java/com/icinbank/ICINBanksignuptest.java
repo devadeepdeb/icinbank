@@ -13,7 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ICINsignuptest {
+public class ICINBanksignuptest {
 	
 	@Autowired
 	WebDriver driver;
