@@ -26,17 +26,17 @@ public class ICINsignuptest {
 		driver = new ChromeDriver();
 		// WebDriver driver = new FirefoxDriver();
 		
-		driver.get("http://localhost:7070/index/");
+		driver.get("http://localhost:7070/index");
 		
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+//		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
 		
 		
 		}
 
 	@Test
 		public void Login() {
-			WebElement loginLink = driver.findElement(By.partialLinkText("Sign up "));
+			WebElement loginLink = driver.findElement(By.xpath("//*[@class='form-group ']"));
 			loginLink.click();
 			
 			WebElement fname = driver.findElement(By.name("firstName"));
@@ -57,7 +57,7 @@ public class ICINsignuptest {
 			WebElement uPwd = driver.findElement(By.name("password"));
 			uPwd.sendKeys("gkdeb");
 			
-			WebElement btnLogin = driver.findElement(By.partialLinkText("Sign up "));
+			WebElement btnLogin = driver.findElement(By.xpath("//button[contains(text(),'Sign up!')]"));
 			btnLogin.click();
 			
 		}
