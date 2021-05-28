@@ -21,16 +21,10 @@ pipeline {
                checkout scm
             }
         }
-        stage('Execute Tests'){
-            steps {
-                echo 'Testing Started'
-                bat 'mvn test'
-            }
-        }
         stage('Build Application'){
             steps {
                 echo 'Building...'
-                bat 'mvn clean install'
+                bat 'mvn clean install -Dmaven.test.skip=true'
             }
         }
         stage('Build Docker Image') {
@@ -63,7 +57,13 @@ pipeline {
 				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW TABLES FROM bootdb;"'
 				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < insert.sql'
 				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.role;"'
-				 bat 'ping -n 300 127.0.0.1>NUL'
+//				 bat 'ping -n 300 127.0.0.1>NUL'
+            }
+        }
+        stage('Execute Tests'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test'
             }
         }
 //		stage('Clean docker containers and images'){

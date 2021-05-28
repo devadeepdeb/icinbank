@@ -1,6 +1,6 @@
 package com.icinbank;
-  
- import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test; 
  import org.junit.runner.RunWith;
@@ -21,6 +21,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 	  
 	  logger.info("Test case executing...");
 	  assertEquals(true, SpringApplication.run(ICINBankApplication.class));
+	  ICINsignuptest obj = new ICINsignuptest();
+		obj.Setup();
+		obj.Login();
+		obj.tearDown();
   }
   
   }
