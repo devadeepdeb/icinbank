@@ -66,12 +66,12 @@ pipeline {
 				 bat 'ping -n 300 127.0.0.1>NUL'
             }
         }
-		stage('Clean docker containers and images'){
-		steps{
-		     echo 'Stopping application container and database after 5 minutes'
-		     bat "docker stop usermysql && docker rm usermysql && docker stop mysqlstandalone && docker rm mysqlstandalone && docker rmi usermysql && docker rmi mysql:8.0.23"
-			}
-        }
+//		stage('Clean docker containers and images'){
+//		steps{
+//		     echo 'Stopping application container and database after 5 minutes'
+//		     bat "docker stop usermysql && docker rm usermysql && docker stop mysqlstandalone && docker rm mysqlstandalone && docker rmi usermysql && docker rmi mysql:8.0.23"
+//			}
+//        }
 //       stage('Create Database') {
 //            steps {
 //                echo 'Running Database Image'
