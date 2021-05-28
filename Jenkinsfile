@@ -63,7 +63,13 @@ pipeline {
         stage('Execute Tests'){
             steps {
                 echo 'Testing Started'
-                bat 'mvn test'
+                bat 'mvn test -Dtest=ICINBanksignuptest'
+            }
+        }
+		stage('Issue Admin Acess from user created through test execution'){
+            steps {
+                echo 'Issuing Admin Access'
+                bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < update.sql'
             }
         }
 //		stage('Clean docker containers and images'){
