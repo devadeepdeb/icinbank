@@ -29,7 +29,7 @@ public class ICINBanksignuptest {
 		driver.get("http://localhost:7070/index");
 		
 		driver.manage().window().maximize();
-//		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+		driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
 		
 		
 		}
