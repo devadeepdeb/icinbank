@@ -60,10 +60,28 @@ pipeline {
 //				 bat 'ping -n 300 127.0.0.1>NUL'
             }
         }
-        stage('Execute Tests'){
+        stage('Execute Test1'){
             steps {
                 echo 'Testing Started'
                 bat 'mvn test -Dtest=ICINBanksignuptest'
+            }
+        }
+		stage('Execute Test2'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBankwithdrawtest'
+            }
+        }
+		stage('Execute Test3'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBanktransfertest'
+            }
+        }
+		stage('Execute Test4'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBankrequesttest'
             }
         }
 		stage('Issue Admin Acess from user created through test execution'){
