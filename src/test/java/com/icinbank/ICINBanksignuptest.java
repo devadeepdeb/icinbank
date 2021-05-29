@@ -168,16 +168,16 @@ public class ICINBanksignuptest {
 			WebElement cl5 = driver.findElement(By.xpath("//button[contains(text(),'Transfer')]"));
 			cl5.click();
 			
-			WebElement h15 = driver.findElement(By.xpath("//a[contains(text(),'Accounts')]"));
-			h15.click();
+			//WebElement h15 = driver.findElement(By.xpath("//a[contains(text(),'Accounts')]"));
+			//h15.click();
 			
-			WebElement h16 = driver.findElement(By.xpath("//a[contains(text(),'Primary')]"));
+			//WebElement h16 = driver.findElement(By.xpath("//a[contains(text(),'Primary')]"));
 			//JavascriptExecutor executor = (JavascriptExecutor)driver;
 		    //executor.executeScript("arguments[0].click();", h16);
-			h16.click();
+			//h16.click();
 			
-			WebElement h17 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
-			h17.click();
+			//WebElement h17 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
+			//h17.click();
 			
 			WebElement h18 = driver.findElement(By.xpath("//a[contains(text(),'Transfer')]"));
 			h18.click();
@@ -194,14 +194,14 @@ public class ICINBanksignuptest {
 			WebElement cl6 = driver.findElement(By.xpath("//button[contains(text(),'Transfer')]"));
 			cl6.click();
 			
-			WebElement h19 = driver.findElement(By.xpath("//a[contains(text(),'Accounts')]"));
-			h19.click();
+			//WebElement h19 = driver.findElement(By.xpath("//a[contains(text(),'Accounts')]"));
+			//h19.click();
 			
-			WebElement h20 = driver.findElement(By.xpath("//a[contains(text(),'Savings')]"));
-			h20.click();
+			//WebElement h20 = driver.findElement(By.xpath("//a[contains(text(),'Savings')]"));
+			//h20.click();
 			
-			WebElement h21 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
-			h21.click();
+			//WebElement h21 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
+			//h21.click();
 			
 			WebElement h22 = driver.findElement(By.xpath("//a[contains(text(),'Transfer')]"));
 			h22.click();
