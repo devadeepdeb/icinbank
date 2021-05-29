@@ -63,17 +63,17 @@ public class ICINBankrequesttest {
 			JavascriptExecutor executor1 = (JavascriptExecutor)driver;
 		    executor1.executeScript("arguments[0].click();", cl9);
 			
-			WebElement h34 = driver.findElement(By.xpath("//a[contains(text(),'Me ')]"));
-			h34.click();
+			//WebElement h34 = driver.findElement(By.xpath("//a[contains(text(),'Me ')]"));
+			//h34.click();
 			
-			WebElement h35 = driver.findElement(By.xpath("//a[contains(text(),'Profile')]"));
-			h35.click();
+			//WebElement h35 = driver.findElement(By.xpath("//a[contains(text(),'Profile')]"));
+			//h35.click();
 			
-			WebElement h36 = driver.findElement(By.xpath("//a[contains(text(),'Me ')]"));
-			h36.click();
+			//WebElement h36 = driver.findElement(By.xpath("//a[contains(text(),'Me ')]"));
+			//h36.click();
 			
-			WebElement h37 = driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
-			h37.click();
+			//WebElement h37 = driver.findElement(By.xpath("//a[contains(text(),'Logout')]"));
+			//h37.click();
 			
 		}
 	
