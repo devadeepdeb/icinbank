@@ -100,7 +100,8 @@ public class ICINBanksignuptest {
 			WebElement btnlgn = driver.findElement(By.xpath("//button[contains(text(),'Sign in')]"));
 			btnlgn.click();
 			
-			WebElement h1 = driver.findElement(By.xpath("//*[contains(text(),'Go to Deposit')]"));
+			//WebElement h1 = driver.findElement(By.xpath("//*[contains(text(),'Go to Deposit')]"));
+			WebElement h1 = driver.findElement(By.xpath("//a[@href='/account/deposit']/div/span[@class='pull-left']"));
 			h1.click();
 			
 			Select acctType1 = new Select(driver.findElement(By.id("accountType")));
@@ -120,7 +121,8 @@ public class ICINBanksignuptest {
 			
 			//driver.navigate().back();
 			
-			WebElement h4 = driver.findElement(By.xpath("//*[contains(text(),'Go to Withdrawal')]"));
+			//WebElement h4 = driver.findElement(By.xpath("//*[contains(text(),'Go to Withdrawal')]"));
+			WebElement h4 = driver.findElement(By.xpath("//a[@href='/account/withdraw']/div/span[@class='pull-left']"));
 			h4.click();
 			
 			Select acctType2 = new Select(driver.findElement(By.xpath("//select[@name='accountType']")));
@@ -194,8 +196,9 @@ public class ICINBanksignuptest {
 			h15.click();
 			
 			WebElement h16 = driver.findElement(By.xpath("//a[contains(text(),'Primary')]"));
-			JavascriptExecutor executor = (JavascriptExecutor)driver;
-		    executor.executeScript("arguments[0].click();", h16);
+			//JavascriptExecutor executor = (JavascriptExecutor)driver;
+		    //executor.executeScript("arguments[0].click();", h16);
+			h16.click();
 			
 			WebElement h17 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
 			h17.click();
