@@ -58,11 +58,7 @@ public class ICINBanksignuptest {
 			WebElement btnLogin1 = driver.findElement(By.xpath("//button[contains(text(),'Sign up!')]"));
 			btnLogin1.click();
 			
-		}
-		
-		@Test
-		public void SignupUser() {
-		    //WebElement loginLink1 = driver.findElement(By.xpath("//a[@href='/signup']"));
+			//WebElement loginLink1 = driver.findElement(By.xpath("//a[@href='/signup']"));
 			WebElement loginLink1 = driver.findElement(By.xpath("//*[@class='form-group ']"));
 			loginLink1.click();
 			
@@ -86,7 +82,9 @@ public class ICINBanksignuptest {
 			
 			WebElement btnLogin2 = driver.findElement(By.xpath("//button[contains(text(),'Sign up!')]"));
 			btnLogin2.click();
+			
 		}
+		
 		
 		@Test
 		public void LoginFunctions() {
