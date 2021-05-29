@@ -190,7 +190,8 @@ public class ICINBanksignuptest {
 			h15.click();
 			
 			WebElement h16 = driver.findElement(By.xpath("//a[contains(text(),'Primary')]"));
-			h16.click();
+			JavascriptExecutor executor = (JavascriptExecutor)driver;
+		    executor.executeScript("arguments[0].click();", h16);
 			
 			WebElement h17 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
 			h17.click();
@@ -295,8 +296,8 @@ public class ICINBanksignuptest {
 			h33.click();
 			
 			WebElement cl9 = driver.findElement(By.xpath("//button[@data-bb-handler='confirm']"));
-			JavascriptExecutor executor = (JavascriptExecutor)driver;
-		    executor.executeScript("arguments[0].click();", cl9);
+			JavascriptExecutor executor1 = (JavascriptExecutor)driver;
+		    executor1.executeScript("arguments[0].click();", cl9);
 			
 			WebElement h34 = driver.findElement(By.xpath("//a[contains(text(),'Me ')]"));
 			h34.click();
