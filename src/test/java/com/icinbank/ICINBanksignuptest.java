@@ -62,7 +62,8 @@ public class ICINBanksignuptest {
 		
 		@Test
 		public void SignupUser() {
-		    WebElement loginLink1 = driver.findElement(By.xpath("//a[@href='/signup']"));
+		    //WebElement loginLink1 = driver.findElement(By.xpath("//a[@href='/signup']"));
+			WebElement loginLink1 = driver.findElement(By.xpath("//*[@class='form-group ']"));
 			loginLink1.click();
 			
 			WebElement fname1 = driver.findElement(By.name("firstName"));
