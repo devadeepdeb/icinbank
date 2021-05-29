@@ -70,6 +70,7 @@ pipeline {
             steps {
                 echo 'Issuing Admin Access'
                 bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < update.sql'
+				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.user_role;"'
             }
         }
 //		stage('Clean docker containers and images'){
