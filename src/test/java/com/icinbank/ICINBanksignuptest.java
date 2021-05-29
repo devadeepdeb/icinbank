@@ -101,7 +101,7 @@ public class ICINBanksignuptest {
 			//WebElement h4 = driver.findElement(By.xpath("//a[@href='/account/withdraw']/div/span[@class='pull-left']"));
 			h4.click();
 			
-			Select acctType2 = new Select(driver.findElement(By.xpath("//select[@name='accountType']")));
+			Select acctType2 = new Select(driver.findElement(By.id("accountType")));
 			acctType2.selectByVisibleText("Primary");
 			
 			WebElement acctAmt2 = driver.findElement(By.xpath("//input[@id='amount']"));
