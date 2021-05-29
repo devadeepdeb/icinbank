@@ -118,7 +118,7 @@ public class ICINBanksignuptest {
 			WebElement h4 = driver.findElement(By.xpath("//*[contains(text(),'Go to Withdrawal')]"));
 			h4.click();
 			
-			Select acctType2 = new Select(driver.findElement(By.id("accountType")));
+			Select acctType2 = new Select(driver.findElement(By.xpath("//select[@name='accountType']")));
 			acctType2.selectByVisibleText("Primary");
 			
 			WebElement acctAmt2 = driver.findElement(By.xpath("//input[@id='amount']"));
@@ -155,7 +155,7 @@ public class ICINBanksignuptest {
 			WebElement h10 = driver.findElement(By.xpath("//*[contains(text(),'Go to Withdrawal')]"));
 			h10.click();
 			
-			Select acctType4 = new Select(driver.findElement(By.id("accountType")));
+			Select acctType4 = new Select(driver.findElement(By.xpath("//select[@name='accountType']")));
 			acctType4.selectByVisibleText("Savings");
 			
 			WebElement acctAmt4 = driver.findElement(By.xpath("//input[@id='amount']"));
