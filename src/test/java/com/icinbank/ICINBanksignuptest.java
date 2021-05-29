@@ -33,30 +33,8 @@ public class ICINBanksignuptest {
 		}
 
 	@Test
-		public void SignupAdmin() {
-			WebElement loginLink = driver.findElement(By.xpath("//*[@class='form-group ']"));
-			loginLink.click();
+		public void Signup() {
 			
-			WebElement fname = driver.findElement(By.name("firstName"));
-			fname.sendKeys("GOLAP KANTA");
-			
-			WebElement lname = driver.findElement(By.name("lastName"));
-			lname.sendKeys("DEB");
-			
-			WebElement phn = driver.findElement(By.name("phone"));
-			phn.sendKeys("9953336381");
-			
-			WebElement eml = driver.findElement(By.name("email"));
-			eml.sendKeys("gk_deb1@yahoo.com");
-			
-			WebElement uname = driver.findElement(By.name("username"));
-			uname.sendKeys("gkdeb");
-			
-			WebElement uPwd = driver.findElement(By.name("password"));
-			uPwd.sendKeys("gkdeb");
-			
-			WebElement btnLogin1 = driver.findElement(By.xpath("//button[contains(text(),'Sign up!')]"));
-			btnLogin1.click();
 			
 			//WebElement loginLink1 = driver.findElement(By.xpath("//a[@href='/signup']"));
 			WebElement loginLink1 = driver.findElement(By.xpath("//*[@class='form-group ']"));
@@ -98,8 +76,8 @@ public class ICINBanksignuptest {
 			WebElement btnlgn = driver.findElement(By.xpath("//button[contains(text(),'Sign in')]"));
 			btnlgn.click();
 			
-			//WebElement h1 = driver.findElement(By.xpath("//*[contains(text(),'Go to Deposit')]"));
-			WebElement h1 = driver.findElement(By.xpath("//a[@href='/account/deposit']/div/span[@class='pull-left']"));
+			WebElement h1 = driver.findElement(By.xpath("//*[contains(text(),'Go to Deposit')]"));
+			//WebElement h1 = driver.findElement(By.xpath("//a[@href='/account/deposit']/div/span[@class='pull-left']"));
 			h1.click();
 			
 			Select acctType1 = new Select(driver.findElement(By.id("accountType")));
@@ -119,8 +97,8 @@ public class ICINBanksignuptest {
 			
 			//driver.navigate().back();
 			
-			//WebElement h4 = driver.findElement(By.xpath("//*[contains(text(),'Go to Withdrawal')]"));
-			WebElement h4 = driver.findElement(By.xpath("//a[@href='/account/withdraw']/div/span[@class='pull-left']"));
+			WebElement h4 = driver.findElement(By.xpath("//*[contains(text(),'Go to Withdrawal')]"));
+			//WebElement h4 = driver.findElement(By.xpath("//a[@href='/account/withdraw']/div/span[@class='pull-left']"));
 			h4.click();
 			
 			Select acctType2 = new Select(driver.findElement(By.xpath("//select[@name='accountType']")));
