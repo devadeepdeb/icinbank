@@ -8,7 +8,12 @@ pipeline {
 //    }
     stages {
         
-		
+		stage('Execute Test3'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBanktransfertest'
+            }
+        }
 		stage('Execute Test4'){
             steps {
                 echo 'Testing Started'

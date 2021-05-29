@@ -69,20 +69,20 @@ public class ICINBanktransfertest {
 			//WebElement h17 = driver.findElement(By.xpath("//a[contains(@href,'/ICINBank')]"));
 			//h17.click();
 			
-			WebElement h18 = driver.findElement(By.xpath("//a[contains(text(),'Transfer')]"));
-			h18.click();
+			//WebElement h18 = driver.findElement(By.xpath("//a[contains(text(),'Transfer')]"));
+			//h18.click();
 			
-			WebElement h181 = driver.findElement(By.xpath("//a[contains(text(),'Between Accounts')]"));
-			h181.click();
+			//WebElement h181 = driver.findElement(By.xpath("//a[contains(text(),'Between Accounts')]"));
+			//h181.click();
 			
-			Select acctType6 = new Select(driver.findElement(By.xpath("//select[@name='transferFrom']")));
-			acctType6.selectByVisibleText("Savings");
+			//Select acctType6 = new Select(driver.findElement(By.xpath("//select[@name='transferFrom']")));
+			//acctType6.selectByVisibleText("Savings");
 			
-			WebElement acctAmt6 = driver.findElement(By.xpath("//input[@id='amount']"));
-			acctAmt6.sendKeys("10");
+			//WebElement acctAmt6 = driver.findElement(By.xpath("//input[@id='amount']"));
+			//acctAmt6.sendKeys("10");
 			
-			WebElement cl6 = driver.findElement(By.xpath("//button[contains(text(),'Transfer')]"));
-			cl6.click();
+			//WebElement cl6 = driver.findElement(By.xpath("//button[contains(text(),'Transfer')]"));
+			//cl6.click();
 			
 			//WebElement h19 = driver.findElement(By.xpath("//a[contains(text(),'Accounts')]"));
 			//h19.click();
