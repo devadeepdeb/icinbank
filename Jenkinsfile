@@ -21,12 +21,9 @@ pipeline {
                checkout scm
             }
         }
-        stage('Build Application'){
-            steps {
-                echo 'Building...'
-                sh 'mvn clean install -Dmaven.test.skip=true'
-            }
-        }
+        
+		
+		
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
