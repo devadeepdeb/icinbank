@@ -58,7 +58,7 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 <p>Below is the way how the admin can be updated manually via mysql:8.0.23 docker running container</p>
 <img src="Images/AdminRole update in db.PNG">
 <h3>Deployment Steps on AWS EC2 instance</h3>
-<p>
+<pre>
 1) I used	https://github.com/devadeepdeb/icinbank
 2)	I went to AWS Web Console https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1# and selected EC2 in Services
 3)	Then I created instance by clicking on “EC2 Dashboard” and then “Launch Instance”.
@@ -80,4 +80,4 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 19)	Write "docker run -d -p 7070:8080 --name usermysql --link mysqlstandalone:mysql usermysql" to run application container
 20)	Now open http://54.197.30.224:5001/ to host Springboot application docker container on AWS EC2 instance for end users.
 21)	Loaded application screenshot is as below (I have only deployed in AWS EC2 instance. We also need to configure mysql db table updates for admin user , which is only performed via Jenkins. I have not used Jenkins in AWS deployment)
-</p>
+</pre>
