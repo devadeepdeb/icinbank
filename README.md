@@ -17,6 +17,43 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 <img src="Images/BankPipeline Configuration.PNG">
 <img src="Images/BankPipeline Configuration-cont.PNG">
 <p>Click on create branch which generated master branch for  "BankPipeline". Go to that branch and click "Build Now".</p>
-<p>Multi staged pipeline completed like this.</p>
+<p>Multi staged pipeline completed like this with logs.</p>
 <img src="Images/Multipipeline execution.PNG">
-
+<img src="mv1.PNG">
+<img src="mv2.PNG">
+<img src="mv3.PNG">
+<img src="mv4.PNG">
+<img src="mv5.PNG">
+<img src="mv6.PNG">
+<img src="mv7.PNG">
+<img src="mv8.PNG">
+<img src="mv9.PNG">
+<img src="mv10.PNG">
+<img src="mv11.PNG">
+<img src="mv12.PNG">
+<img src="mv13.PNG">
+<img src="mv14.PNG">
+<img src="mv15.PNG">
+<p>After that Spring boot application start on port 7070 as per below screenshots</p>
+<img src="Boot1.PNG">
+<img src="Boot2.PNG">
+<img src="Boot3.PNG">
+<img src="Boot4.PNG">
+<img src="Boot5.PNG">
+<img src="Boot6.PNG">
+<img src="Boot7.PNG">
+<img src="Boot8.PNG">
+<img src="Boot9.PNG">
+<img src="Boot10.PNG">
+<img src="Boot11.PNG">
+<img src="Boot12.PNG">
+<img src="Boot13.PNG">
+<img src="Boot14.PNG">
+<img src="Boot15.PNG">
+<img src="Boot16.PNG">
+<img src="Boot17.PNG">
+<img src="Boot18.PNG">
+<img src="Boot19.PNG">
+<img src="Boot20.PNG">
+<p>Below is the way how the admin can be updated manually via mysql:8.0.23 docker running container</p>
+<img src="AdminRole update in db.PNG">
