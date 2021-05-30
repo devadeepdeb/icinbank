@@ -7,14 +7,7 @@ pipeline {
 ////        string(name: 'MYSQL_USER', defaultValue: 'root', description: 'MySQL username')
 //    }
     stages {
-        stage ("Initialize Jenkins Env") {
-         steps {
-            bat '''
-            echo "PATH = ${PATH}"
-            echo "M2_HOME = ${M2_HOME}"
-            '''
-         }
-        }
+       
         stage('Download Code') {
             steps {
                echo 'checking out'
