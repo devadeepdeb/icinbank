@@ -59,7 +59,7 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 <img src="Images/AdminRole update in db.PNG">
 <h3>Deployment Steps on AWS EC2 instance</h3>
 <pre>
-1) I used	https://github.com/devadeepdeb/icinbank
+1)  I used https://github.com/devadeepdeb/icinbank
 2)	I went to AWS Web Console https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1# and selected EC2 in Services
 3)	Then I created instance by clicking on “EC2 Dashboard” and then “Launch Instance”.
 4)	I chose “Amazon Linux 2 AMI (HVM), SSD Volume Type” and “t2 micro type” and proceeded with default settings of “Configure Instance”, “Add Storage”, “Add Tags”.
@@ -81,3 +81,13 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 20)	Now open http://54.197.30.224:5001/ to host Springboot application docker container on AWS EC2 instance for end users.
 21)	Loaded application screenshot is as below (I have only deployed in AWS EC2 instance. We also need to configure mysql db table updates for admin user , which is only performed via Jenkins. I have not used Jenkins in AWS deployment)
 </pre>
+<img src="Images/AWS EC2 docker-git version.PNG">
+<img src="Images/AWS EC2 maven-java version.PNG">
+<img src="Images/AWS Security Rules.PNG">
+<img src="Images/AWS Springboot SSH 1.PNG">
+<img src="Images/AWS Springboot SSH 2.PNG">
+<img src="Images/AWS Springboot SSH 3.PNG">
+<img src="Images/AWS Springboot SSH 4.PNG">
+<img src="Images/AWS Springboot SSH 5.PNG">
+<img src="Images/Springboot APP_AWS.PNG">
+<img src="Images/Springboot APP_AWS1.PNG">
