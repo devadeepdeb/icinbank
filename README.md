@@ -84,6 +84,7 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 <img src="Images/AWS EC2 docker-git version.PNG">
 <img src="Images/AWS EC2 maven-java version.PNG">
 <img src="Images/AWS Security Rules.PNG">
+<img src="Images/AWS EC2 instance.PNG">
 <img src="Images/AWS Springboot SSH 1.PNG">
 <img src="Images/AWS Springboot SSH 2.PNG">
 <img src="Images/AWS Springboot SSH 3.PNG">
