@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ("Initialize Jenkins Env") {
          steps {
-            sh '''
+            bat '''
             echo "PATH = ${PATH}"
             echo "M2_HOME = ${M2_HOME}"
             '''
@@ -21,48 +21,81 @@ pipeline {
                checkout scm
             }
         }
-        
-		
-		
+        stage('Build Application'){
+            steps {
+                echo 'Building...'
+                bat 'mvn clean install -Dmaven.test.skip=true'
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image'
-                sh 'docker build -t usermysql .'
+                bat 'docker build -t usermysql .'
             }
         }
         stage('Pull MySQL Image') {
             steps {
                 echo 'Pulling mysql image'
-                sh 'docker pull mysql:8.0.23'
+                bat 'docker pull mysql:8.0.23'
             }
         }
         stage('Run MySQL server to run as Docker container') {
             steps {
                 echo 'Running mysql image and giving warmup time of approx 4 minutes'
-                sh 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
-                sh 'ping -n 400 127.0.0.1>NUL'
+                bat 'docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23'
+                bat 'ping -n 400 127.0.0.1>NUL'
             }
         }
         stage('Deploy and Run Bank Application container') {
             steps {
                 echo 'Starting application container'
-                sh 'docker run -d -p 7070:8080 --name usermysql --link mysqlstandalone:mysql usermysql'
-//               sh 'docker container logs -f usermysql'
-                 sh 'ping -n 90 127.0.0.1>NUL'
+                bat 'docker run -d -p 7070:8080 --name usermysql --link mysqlstandalone:mysql usermysql'
+//               bat 'docker container logs -f usermysql'
+                 bat 'ping -n 90 127.0.0.1>NUL'
                  echo 'Started application container on port 7070'
-				 sh 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW DATABASES;"'
-				sh 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW TABLES FROM bootdb;"'
-				sh 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < insert.sql'
-				sh 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.role;"'
-//				 sh 'ping -n 300 127.0.0.1>NUL'
+				 bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW DATABASES;"'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SHOW TABLES FROM bootdb;"'
+				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < insert.sql'
+				bat 'docker exec -i mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.role;"'
+//				 bat 'ping -n 300 127.0.0.1>NUL'
             }
         }
-
+        stage('Execute Test1'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBanksignuptest'
+            }
+        }
+		stage('Execute Test2'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBankwithdrawtest'
+            }
+        }
+		
+		stage('Execute Test3'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBanktransfertest'
+            }
+        }
+		stage('Execute Test4'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBankrequesttest'
+            }
+        }
+		stage('Execute Test5'){
+            steps {
+                echo 'Testing Started'
+                bat 'mvn test -Dtest=ICINBankadmintest'
+            }
+        }
 		stage('Issue Admin Acess from user created through test execution'){
             steps {
                 echo 'Issuing Admin Access'
-                sh 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < update.sql'
-				sh 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.user_role;"'
+                bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep < update.sql'
+				bat 'docker exec -i  mysqlstandalone mysql -uroot -pdevadeep -e "SELECT * FROM bootdb.user_role;"'
             }
         }
 //		stage('Clean docker containers and images'){
