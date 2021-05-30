@@ -78,7 +78,7 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 17)	Write "docker pull mysql:8.0.23" to pull mysql 8.0.23 version image on above repo
 18)	Write “docker run --name mysqlstandalone -e MYSQL_DATABASE=bootdb -e MYSQL_ROOT_PASSWORD=devadeep -e MYSQL_ROOT_USER=root -d mysql:8.0.23" to run mysql container
 19)	Write "docker run -d -p 7070:8080 --name usermysql --link mysqlstandalone:mysql usermysql" to run application container
-20)	Now open http://54.197.30.224:5001/ to host Springboot application docker container on AWS EC2 instance for end users.
+20)	Now open http://3.94.213.17:7070/ to host Springboot application docker container on AWS EC2 instance for end users.
 21)	Loaded application screenshot is as below (I have only deployed in AWS EC2 instance. We also need to configure mysql db table updates for admin user , which is only performed via Jenkins. I have not used Jenkins in AWS deployment)
 </pre>
 <img src="Images/AWS EC2 docker-git version.PNG">
