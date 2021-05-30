@@ -92,4 +92,4 @@ There are two roles user and admin (devadeepdeb as user, gkdeb as admin).
 <img src="Images/Springboot APP_AWS.PNG">
 <img src="Images/Springboot APP_AWS1.PNG">
 
-<p>Admin will control the user application via Angular whose github url is <a href="https://github.com/devadeepdeb/AdminPortal>Admin Angular</a> to enable/disable user, approval of cheque requests.</p> 
+<p>Admin will control the user application via Angular whose github url is <a href="https://github.com/devadeepdeb/AdminPortal>Admin Angular</a> to enable or disable user and approval of cheque requests.</p> 
